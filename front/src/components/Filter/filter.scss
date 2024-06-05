@@ -1,0 +1,45 @@
+.filter-section {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    gap:40px;
+    margin-bottom: 40px;
+
+    .filterList {
+        height: 40px;
+        display: flex;
+        gap: 40px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        .filterListPuce {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0065FC;
+            cursor: pointer;
+            border: 2px solid #D9D9D9;
+            border-radius: 20px;
+            padding: 0px 20px 0px 15px;
+            transition: transform 0.3s ease, background-color 0.3s ease, border 0.3s ease;
+
+            .filterLogo {
+                width: 25px;
+                height: 25px;
+            }
+
+            h4 {
+                color: black;
+            }
+        }
+
+        .filterListPuce:hover {
+            background-color: #DEEBFF;
+            border: 2px solid #DEEBFF;
+            transform: scale(1.1);
+        }
+    }
+}

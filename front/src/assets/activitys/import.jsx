@@ -1,0 +1,6 @@
+export { default as VieuxPort } from '@assets/activitys/VieuxPort.avif'
+export { default as FortDePomegues } from '@assets/activitys/FortDePomegues.avif'
+export { default as ParcNationalDesCalanques } from '@assets/activitys/ParcNationalDesCalanques.avif'
+export { default as NotreDameDeLaGarde } from '@assets/activitys/NotreDameDeLaGarde.avif'
+export { default as ÎlesduFrioul } from '@assets/activitys/ÎlesduFrioul.avif'
+export { default as ParcLonchamp } from '@assets/activitys/ParcLonchamp.avif'

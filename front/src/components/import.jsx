@@ -1,0 +1,8 @@
+export { default as Header } from '@components/Header/header.jsx'
+export { default as Footer} from '@components/Footer/footer.jsx'
+export { default as LodgingCard } from '@components/LodgingCard/lodgingCard.jsx'
+export { default as PopularCard } from '@components/PopularCard/popularCard.jsx'
+export { default as ActivityCard } from '@components/ActivityCard/activityCard.jsx'
+export { default as Filter } from '@components/Filter/filter.jsx'
+export { default as SearchBar } from '@components/SearchBar/searchBar.jsx'
+export { default as StarRating } from '@components/StarRating/starRating.jsx'

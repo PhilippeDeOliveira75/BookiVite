@@ -1,0 +1,131 @@
+.w-title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 35px;
+}
+
+.w-iconsParagraph {
+    display: flex;
+    align-items: center;
+    margin-bottom: 35px;
+
+    .w-icons {
+        position: relative;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+
+        .circle-icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 24px;
+            color: #e5e7eb;
+          }
+          
+          .info-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10px;
+            color: #2563eb; 
+          }
+
+    }
+}
+
+.filterContainer {
+    width: 100%;
+}
+
+.w-LodgingCardAndPopularCard {
+    width: 100%;
+    min-height: 630px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    gap: 40px;
+
+
+    .titleAndLodgingCardContainer {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        background-color: #F2F2F2;
+        padding: 40px 40px 40px 40px;
+        border-radius: 15px;
+
+
+        .w-titleAndLodingCard {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+    
+            .w-LodgingCard {
+                width: 100%;
+                display: grid;
+                grid-template-rows: auto auto;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px;
+            }
+        
+        }
+
+        button {
+            margin-top: 40px;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+        }
+
+        button:hover {
+            color: #0065FC;
+            cursor: pointer;
+        }
+    }
+
+   .titleAndPopularCardContainer {
+        width: 30%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #F2F2F2;
+        padding: 40px 40px 40px 40px;
+        border-radius: 15px;
+        gap: 0px;
+        
+        .w-titleAndLogo {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .popularLogo {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    
+        .w-popularCard {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+    
+        }
+    }
+}
+
+.activityCardContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    height: 440px;
+}

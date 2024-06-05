@@ -1,0 +1,43 @@
+html {
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0 auto;
+  padding: 0 30px;
+  max-width: 1440px;
+}
+
+
+h1 {
+  all: unset;
+  font-size: 20px;
+  font-weight: 700;
+}
+ 
+h2 {
+  all: unset;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+h3 {
+  all: unset;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+h4 {
+  all: unset;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+p {
+  all: unset;
+  font-size: 12px;
+  font-weight: 400;
+  color: #000000;
+}

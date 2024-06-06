@@ -1,43 +1,44 @@
-//import des modules//
+/* Import des modules nécessaires */
 const express = require('express')
 const cors = require('cors')
+const checkTokenMiddleware = require('./jsonwebtoken/check')
 
-
-//import de la connexion à la base de données//
+/* Import de la connexion à la DB */
 let DB = require('./db.config')
 
-//initialisation de l'aPI//
+/* Initialisation de l'API */
 const app = express()
 
-app.use(cors())
+app.use(cors({
+   origin: "*",
+   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+   allowedHeaders: "Origin, X-Requested-With, x-access-token, role, Content, Accept, Content-Type, Authorization"
+}))
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-//import des routes//
-app.get('/', (req, res) => {
-    res.send('Hello World')
-})
+/* Import des modules de routage */
+//const user_router = require('./routes/users')
+const lodgingRouter = require('./routes/lodgings')
+//const auth_router = require('./routes/auth')
 
-app.get('*', (req, res) => {
-    res.status(501).send('Page not found')
-})
+/* Mise en place du routage */
 
-//lancement du serveur avec test DB//
+app.get('/', (req, res) => res.send(`Jusqu'ici tout va bien`))
 
+//app.use('/users', checkTokenMiddleware, user_router)
+app.use('/lodgings', lodgingRouter)
+//app.use('/auth', auth_router)
 
-//lancement du serveur avec test DB//
+app.get('*', (req, res) => res.status(501).send(`Tu n'as rien à foutre là`))
 
-/*DB.authenticate()
-    .then(() => console.log('Database connected successfully.'))
+/* Start serveur avec test DB */
+DB.sequelize.authenticate()
+    .then(() => console.log('Database connection OK'))
     .then(() => {
         app.listen(process.env.SERVER_PORT, () => {
-            console.log(`Welcome to the real world, your are listenning on port ${process.env.SERVER_PORT}`)
+            console.log(`This server is running on port ${process.env.SERVER_PORT}. Au boulot feignasse!`)
         })
     })
-
-    .catch(err => console.error('Unable to connect to the database:', err))
-*/
-
-app.listen(process.env.SERVER_PORT, () => {
-    console.log(`Welcome to the real world, your are listenning on port ${process.env.SERVER_PORT}`)
-})
+    .catch(err => console.log(`Database Error`, err))

@@ -1,11 +1,9 @@
-/*import des modules*/
+/* Import des modules nécessaires */
 const { Sequelize } = require('sequelize')
 
-/*connexion à la base de données*/
+/* Connexion à la base de données */
 let sequelize = new Sequelize(
-    process.env.DB_NAME, 
-    process.env.DB_USER, 
-    process.env.DB_PASS, {
+    process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
         dialect: 'mysql',
@@ -13,7 +11,20 @@ let sequelize = new Sequelize(
     }
 )
 
-/*synchronisation des modèles*/
-//sequelize.sync()
+/* Mise en place des relations */
+const db = {}
 
-module.exports = sequelize
+db.sequelize = sequelize
+//db.User = require('./models/user')(sequelize)
+db.Lodging = require('./models/lodging')(sequelize)
+
+/* Synchronisation des modèles */
+sequelize.sync(err => {
+
+    console.log('Database Sync Error', err) 
+
+})
+
+db.sequelize.sync({alter: true})
+
+module.exports = db

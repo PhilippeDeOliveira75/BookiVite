@@ -1,8 +1,8 @@
-import './admin.scss';
-import { useState } from 'react';
-import { LodgingCaller } from '@services/import';
-import StarRating from '@components/StarRating/starRating';
-import SearchBar from '@components/SearchBar/searchBar';
+import './admin.scss'
+import { useState } from 'react'
+import { LodgingCaller } from '@services/import'
+import { StarRating, SearchBar } from '@components/import'
+
 
 function Admin () {
 
@@ -15,10 +15,6 @@ function Admin () {
 
     const handleEdit = (id) => {
         console.log(`Modification du logement avec id: ${id}`)
-    };
-
-    const handleClearSearch = () => {
-        setSearchTerm('')
     };
 
     const handleSearch = (event) => {
@@ -34,16 +30,16 @@ function Admin () {
     if (error) return <p>Error: {error.message}</p>;
 
     return (
+
         <div>
-            <h1 className="title">Dashboard Admin</h1>
 
-            <SearchBar 
-                searchTerm={searchTerm}
-                onSearchChange={handleSearch}
-                onClearSearch={handleClearSearch}
-            />
+            <div className='w-adminTitle '>
+                <h1 className="adminTitle">Dashboard Admin</h1>
+            </div>
 
-            <div className="w-LodgingCard">
+            <SearchBar searchTerm={searchTerm} onSearchChange={handleSearch} />
+
+            <div className="w-lodgingAdminCard">
                 <div className='w-newLodgingCard'>
                     <i className="fa fa-plus iconPlus"></i>
                 </div>

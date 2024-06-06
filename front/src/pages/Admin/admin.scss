@@ -1,0 +1,16 @@
+.w-adminTitle {
+    margin: 40px 0px;
+}
+
+.adminTitle {
+    font-size: 24px;
+    color: #0065FC;
+}
+
+.w-lodgingAdminCard {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+
+}

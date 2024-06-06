@@ -4,7 +4,8 @@ import Graph from '@assets/logo/graph.svg';
 import { LodgingCaller } from '@services/import.jsx';
 
 function Home() {
-  const { lodgings, loading, error } = LodgingCaller(); // Utilisation du hook renommé
+  
+  const { lodgings, loading, error } = LodgingCaller()
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;

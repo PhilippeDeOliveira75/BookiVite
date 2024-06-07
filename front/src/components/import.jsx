@@ -6,3 +6,4 @@ export { default as ActivityCard } from '@components/ActivityCard/activityCard.j
 export { default as Filter } from '@components/Filter/filter.jsx'
 export { default as SearchBar } from '@components/SearchBar/searchBar.jsx'
 export { default as StarRating } from '@components/StarRating/starRating.jsx'
+export { default as Sort } from '@components/Sort/sort.jsx'

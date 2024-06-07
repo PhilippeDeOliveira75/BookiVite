@@ -1,11 +1,35 @@
 import './home.scss';
-import { SearchBar, Filter, LodgingCard, PopularCard, ActivityCard } from '@components/import.jsx';
+import { useState } from 'react';
+import { SearchBar, Filter, LodgingCard, PopularCard, ActivityCard, Sort } from '@components/import.jsx';
 import Graph from '@assets/logo/graph.svg';
 import { LodgingCaller } from '@services/import.jsx';
 
 function Home() {
   
-  const { lodgings, loading, error } = LodgingCaller()
+  const { lodgings, loading, error } = LodgingCaller();
+  const [sortBy, setSortBy] = useState('name')
+
+  function handleSortChange(event) {
+    setSortBy(event.target.value);
+  }
+
+  const sortedLodgings = lodgings.slice().sort((a, b) => {
+    if (sortBy === 'prix') {
+      // Pour trier par prix croissant
+      return a.price - b.price;
+    } else if (sortBy === '-prix') {
+      // Pour trier par prix décroissant
+      return b.price - a.price;
+    } else if (sortBy === 'note') {
+      // Pour trier par note
+      return b.rating - a.rating;
+    } else {
+      // Par défaut, trier par nom
+      const nameA = a.title || ''; // Si 'title' est undefined, utilisez une chaîne vide ''
+      const nameB = b.title || ''; // Si 'title' est undefined, utilisez une chaîne vide ''
+      return nameA.localeCompare(nameB);
+    }
+  });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -17,7 +41,7 @@ function Home() {
         <p>En plein centre-ville ou en pleine nature</p>
       </div>
 
-      <SearchBar />
+      < SearchBar />
 
       <span className="w-iconsParagraph">
         <div className='w-icons'>
@@ -28,7 +52,11 @@ function Home() {
       </span>
 
       <div className='filterContainer'>
-        <Filter />
+        < Filter />
+      </div>
+
+      <div>
+        <Sort onChange={handleSortChange} />
       </div>
 
       <div id='hebergements' className='w-LodgingCardAndPopularCard'>
@@ -36,7 +64,7 @@ function Home() {
           <div className='w-titleAndLodingCard'>
             <h2> Hebergements à Marseille </h2>
             <div className="w-LodgingCard">
-              <LodgingCard lodgings={lodgings} />
+              <LodgingCard lodgings={sortedLodgings} />
             </div>
           </div>
           <button>Afficher plus</button>

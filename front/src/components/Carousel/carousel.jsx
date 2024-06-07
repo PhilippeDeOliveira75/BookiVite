@@ -1,6 +1,5 @@
-// src/components/Carousel.js
-
-import React, { useState } from 'react';
+import './i'
+import { useState } from 'react';
 import chevronRight from '@assets/logo/ChevronRight.webp';
 import chevronLeft from '@assets/logo/ChevronLeft.webp';
 

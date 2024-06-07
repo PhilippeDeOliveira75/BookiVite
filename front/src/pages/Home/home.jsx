@@ -1,38 +1,48 @@
 import './home.scss';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { SearchBar, Filter, LodgingCard, PopularCard, ActivityCard, Sort } from '@components/import.jsx';
 import Graph from '@assets/logo/graph.svg';
 import { LodgingCaller } from '@services/import.jsx';
 
 function Home() {
-  
+
   const { lodgings, loading, error } = LodgingCaller();
-  const [sortBy, setSortBy] = useState('name')
+  const [sortBy, setSortBy] = useState('name');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredLodgings, setFilteredLodgings] = useState([]);
 
   function handleSortChange(event) {
     setSortBy(event.target.value);
   }
 
-  const sortedLodgings = lodgings.slice().sort((a, b) => {
+  const handleSearch = (event) => {
+    const input = event.target.value;
+    setSearchTerm(input);
+  };
+
+  const handleFilter = useCallback((filtered) => {
+    setFilteredLodgings(filtered);
+  }, []);
+
+  useEffect(() => {
+    if (!searchTerm && lodgings) {
+      setFilteredLodgings(lodgings);
+    }
+  }, [lodgings, searchTerm]);
+
+  const sortedLodgings = filteredLodgings.slice().sort((a, b) => {
     if (sortBy === 'prix') {
-      // Pour trier par prix croissant
       return a.price - b.price;
     } else if (sortBy === '-prix') {
-      // Pour trier par prix décroissant
       return b.price - a.price;
     } else if (sortBy === 'note') {
-      // Pour trier par note
       return b.rating - a.rating;
     } else {
-      // Par défaut, trier par nom
-      const nameA = a.title || ''; // Si 'title' est undefined, utilisez une chaîne vide ''
-      const nameB = b.title || ''; // Si 'title' est undefined, utilisez une chaîne vide ''
+      const nameA = a.title || '';
+      const nameB = b.title || '';
       return nameA.localeCompare(nameB);
     }
-  });
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  })
 
   return (
     <>
@@ -41,7 +51,7 @@ function Home() {
         <p>En plein centre-ville ou en pleine nature</p>
       </div>
 
-      < SearchBar />
+      <SearchBar searchTerm={searchTerm} onSearchChange={handleSearch} lodgings={lodgings} onFilter={handleFilter} />
 
       <span className="w-iconsParagraph">
         <div className='w-icons'>
@@ -52,7 +62,7 @@ function Home() {
       </span>
 
       <div className='filterContainer'>
-        < Filter />
+        <Filter />
       </div>
 
       <div>
@@ -62,12 +72,15 @@ function Home() {
       <div id='hebergements' className='w-LodgingCardAndPopularCard'>
         <section className='titleAndLodgingCardContainer'>
           <div className='w-titleAndLodingCard'>
-            <h2> Hebergements à Marseille </h2>
-            <div className="w-LodgingCard">
-              <LodgingCard lodgings={sortedLodgings} />
-            </div>
+            <h2> Nos hébergements </h2>
+            {sortedLodgings.length === 0 ? (
+              <p className='noLodingsFoundMessage'> Aucun logement trouvé. </p>
+            ) : (
+              <div className="w-LodgingCard">
+                <LodgingCard lodgings={sortedLodgings} />
+              </div>
+            )}
           </div>
-          <button>Afficher plus</button>
         </section>
 
         <aside className='titleAndPopularCardContainer'>
@@ -82,7 +95,7 @@ function Home() {
         </aside>
       </div>
 
-      <section id='activity' className='activityCardContainer'>
+      <section className='activityCardContainer'>
         <ActivityCard />
       </section>
     </>

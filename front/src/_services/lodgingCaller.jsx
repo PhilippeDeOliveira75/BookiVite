@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ApiCaller } from '@services/import'
 
-const LodgingCaller = () => {
+function LodgingCaller ()  {
     
     const [lodgings, setLodgings] = useState([])
     const [loading, setLoading] = useState(true)

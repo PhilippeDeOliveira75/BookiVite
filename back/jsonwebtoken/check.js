@@ -21,6 +21,7 @@ const checkTokenMiddleware = (req, res, next) => {
     const token = req.headers.authorization && extractBearer(req.headers.authorization)
 
     if(!token){
+        
         return res.status(401).json({ message: 'Ho le petit malin !!!'})
     }
 

@@ -1,7 +1,7 @@
 /*** Import des module nécessaires */
 const express = require('express')
 //const checkTokenMiddleware = require('../jsonwebtoken/check')
-const lodgingCtrl = require('../controllers/lodgings')
+const lodgingCtrl = require('../controllers/lodging')
 
 /* Récupération du routeur d'express */
 let router = express.Router()

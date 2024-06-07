@@ -19,17 +19,17 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 /* Import des modules de routage */
-//const user_router = require('./routes/users')
+const userRouter = require('./routes/users')
 const lodgingRouter = require('./routes/lodgings')
-//const auth_router = require('./routes/auth')
+const authRouter = require('./routes/auth')
 
 /* Mise en place du routage */
 
 app.get('/', (req, res) => res.send(`Jusqu'ici tout va bien`))
 
-//app.use('/users', checkTokenMiddleware, user_router)
+app.use('/users', userRouter)
 app.use('/lodgings', lodgingRouter)
-//app.use('/auth', auth_router)
+app.use('/auth', authRouter)
 
 app.get('*', (req, res) => res.status(501).send(`Tu n'as rien à foutre là`))
 

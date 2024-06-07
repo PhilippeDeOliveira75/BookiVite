@@ -15,7 +15,7 @@ let sequelize = new Sequelize(
 const db = {}
 
 db.sequelize = sequelize
-//db.User = require('./models/user')(sequelize)
+db.User = require('./models/user')(sequelize)
 db.Lodging = require('./models/lodging')(sequelize)
 
 /* Synchronisation des modèles */

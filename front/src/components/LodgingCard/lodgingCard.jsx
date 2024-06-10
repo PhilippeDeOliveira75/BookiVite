@@ -1,13 +1,11 @@
 import './lodgingCard.scss';
-import { StarRating } from '@components/import'
+import { StarRating } from '@components/import';
 
-
-function LodgingCard ({ lodgings }) {
-
+function LodgingCard({ lodgings, onCardClick }) {
   return (
     <>
-      {lodgings.map((lodging, index) => (
-        <article className='w-lodgingCard' key={index} >
+      {lodgings.map((lodging) => (
+        <article className='w-lodgingCard' key={lodging.id} onClick={() => onCardClick(lodging.id)} >
           <img className='lodgingCardImg' src={lodging.cover} alt={`Image ${lodging.title}`} />
           <div className="w-titlePriceAndRating">
             <h3 className="card-title">{lodging.title}</h3>
@@ -22,4 +20,4 @@ function LodgingCard ({ lodgings }) {
   );
 }
 
-export default LodgingCard
+export default LodgingCard;

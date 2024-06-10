@@ -2,12 +2,13 @@ import './admin.scss';
 import { useState, useEffect } from 'react';
 import { LodgingCaller } from '@services/import';
 import { LodgingCard, SearchBar } from '@components/import';
+import { useNavigate } from 'react-router-dom';
 
 function Admin() {
-
     const { lodgings, loading, error } = LodgingCaller();
     const [searchTerm, setSearchTerm] = useState('');
-    const [filteredLodgings, setFilteredLodgings] = useState([])
+    const [filteredLodgings, setFilteredLodgings] = useState([]);
+    const navigate = useNavigate();
 
     const handleSearch = (event) => {
         const input = event.target.value;
@@ -15,18 +16,20 @@ function Admin() {
     };
 
     const handleFilter = (filtered) => {
-        // Vérifiez si les logements filtrés sont différents avant de mettre à jour l'état
         if (JSON.stringify(filteredLodgings) !== JSON.stringify(filtered)) {
             setFilteredLodgings(filtered);
         }
     };
 
     useEffect(() => {
-        // Initialiser les logements filtrés au début
         if (!searchTerm && lodgings) {
             setFilteredLodgings(lodgings);
         }
     }, [lodgings, searchTerm]);
+
+    const handleCardClick = (id) => {
+        navigate(`/lodgingDashboard/${id}`);
+    };
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
@@ -49,7 +52,10 @@ function Admin() {
                     <i className="fa fa-plus iconPlus"></i>
                 </div>
 
-                <LodgingCard lodgings={filteredLodgings} />
+                <LodgingCard 
+                    lodgings={filteredLodgings} 
+                    onCardClick={handleCardClick} 
+                />
             </div>
         </div>
     );

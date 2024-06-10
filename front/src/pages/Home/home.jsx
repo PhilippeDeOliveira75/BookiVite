@@ -3,13 +3,14 @@ import { useState, useEffect, useCallback } from 'react';
 import { SearchBar, Filter, LodgingCard, PopularCard, ActivityCard, Sort } from '@components/import.jsx';
 import Graph from '@assets/logo/graph.svg';
 import { LodgingCaller } from '@services/import.jsx';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
-
   const { lodgings, loading, error } = LodgingCaller();
   const [sortBy, setSortBy] = useState('name');
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredLodgings, setFilteredLodgings] = useState([]);
+  const navigate = useNavigate();
 
   function handleSortChange(event) {
     setSortBy(event.target.value);
@@ -30,6 +31,10 @@ function Home() {
     }
   }, [lodgings, searchTerm]);
 
+  const handleCardClick = (id) => {
+    navigate(`/lodging/${id}`);
+  };
+
   const sortedLodgings = filteredLodgings.slice().sort((a, b) => {
     if (sortBy === 'prix') {
       return a.price - b.price;
@@ -42,7 +47,7 @@ function Home() {
       const nameB = b.title || '';
       return nameA.localeCompare(nameB);
     }
-  })
+  });
 
   return (
     <>
@@ -77,7 +82,7 @@ function Home() {
               <p className='noLodingsFoundMessage'> Aucun logement trouvé. </p>
             ) : (
               <div className="w-LodgingCard">
-                <LodgingCard lodgings={sortedLodgings} />
+                <LodgingCard lodgings={sortedLodgings} onCardClick={handleCardClick} />
               </div>
             )}
           </div>

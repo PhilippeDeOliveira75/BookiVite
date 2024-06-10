@@ -17,18 +17,12 @@ router.use( (req, res, next) => {
 
 router.get('', lodgingCtrl.getAllLodgings)
 
-//router.get('/:id', lodgingCtrl.getLodging)
+router.get('/:id', lodgingCtrl.getLodging)
 
 router.put('', lodgingCtrl.addLodging)
 
-//router.put('', checkTokenMiddleware, lodgingCtrl.addLodging)
+router.patch('/:id', lodgingCtrl.updateLodging)
 
-//router.patch('/:id', checkTokenMiddleware, lodgingCtrl.updateLodging)
-
-//router.post('/untrash/:id', checkTokenMiddleware, lodgingCtrl.untrashLodging)
-    
-//router.delete('/trash/:id', checkTokenMiddleware, lodgingCtrl.trashLodging)
-
-//router.delete('/:id', checkTokenMiddleware, lodgingCtrl.deleteLodging)
+router.delete('/:id', lodgingCtrl.deleteLodging)
 
 module.exports = router

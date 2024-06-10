@@ -10,7 +10,8 @@ exports.getAllLodgings = (req, res) => {
         .catch(err => res.status(500).json({ message: 'Database Error', error: err }))
 }
 
-/*exports.getLodging = async (req, res) => {
+exports.getLodging = async (req, res) => {
+    
     let lodgingId = parseInt(req.params.id)
 
     // Vérification si le champ id est présent et cohérent
@@ -32,7 +33,7 @@ exports.getAllLodgings = (req, res) => {
     } catch (err) {
         return res.status(500).json({ message: 'Database Error', error: err })
     }
-}*/
+}
 
 exports.addLodging = async (req, res) => {
 
@@ -68,66 +69,42 @@ exports.addLodging = async (req, res) => {
     }
 }
 
-/*exports.updateCocktail = async (req, res) => {
-    let cocktailId = parseInt(req.params.id)
+exports.updateLodging = async (req, res) => {
+
+    let lodgingId = parseInt(req.params.id)
 
     // Vérification si le champ id est présent et cohérent
-    if (!cocktailId) {
+    if (!lodgingId) {
         return res.status(400).json({ message: 'Missing parameter' })
     }
 
     try{
-        // Recherche du cocktail et vérification
-        let cocktail = await Cocktail.findOne({ where: { id: cocktailId }, raw: true })
-        if (cocktail === null) {
-            return res.status(404).json({ message: 'This cocktail does not exist !' })
+        // Recherche du lodging et vérification
+        let lodging = await Lodging.findOne({ where: { id: lodgingId }, raw: true })
+        if (lodging === null) {
+            return res.status(404).json({ message: 'This lodging does not exist !' })
         }
 
-        // Mise à jour du cocktail
-        await Cocktail.update(req.body, { where: { id: cocktailId } })
-        return res.json({ message: 'Cocktail Updated' })
+        // Mise à jour du lodging
+        await Lodging.update(req.body, { where: { id: lodgingId } })
+        return res.json({ message: 'Lodiging Updated' })
     }catch(err){
         return res.status(500).json({ message: 'Database Error', error: err })
     }    
-}*/
+}
 
-/*exports.untrashCocktail = (req, res) => {
-    let cocktailId = parseInt(req.params.id)
+
+exports.deleteLodging = (req, res) => {
+
+    let lodgingId = parseInt(req.params.id)
 
     // Vérification si le champ id est présent et cohérent
-    if (!cocktailId) {
+    if (!lodgingId) {
         return res.status(400).json({ message: 'Missing parameter' })
     }
 
-    Cocktail.restore({ where: { id: cocktailId } })
+    // Suppression du lodging
+    Lodging.destroy({ where: { id: lodgingId }, force: true })
         .then(() => res.status(204).json({}))
         .catch(err => res.status(500).json({ message: 'Database Error', error: err }))
-}*/
-
-/*exports.trashCocktail = (req, res) => {
-    let cocktailId = parseInt(req.params.id)
-
-    // Vérification si le champ id est présent et cohérent
-    if (!cocktailId) {
-        return res.status(400).json({ message: 'Missing parameter' })
-    }
-
-    // Suppression du cocktail
-    Cocktail.destroy({ where: { id: cocktailId } })
-        .then(() => res.status(204).json({}))
-        .catch(err => res.status(500).json({ message: 'Database Error', error: err }))
-}*/
-
-/*exports.deleteCocktail = (req, res) => {
-    let cocktailId = parseInt(req.params.id)
-
-    // Vérification si le champ id est présent et cohérent
-    if (!cocktailId) {
-        return res.status(400).json({ message: 'Missing parameter' })
-    }
-
-    // Suppression du cocktail
-    Cocktail.destroy({ where: { id: cocktailId }, force: true })
-        .then(() => res.status(204).json({}))
-        .catch(err => res.status(500).json({ message: 'Database Error', error: err }))
-}*/
+}

@@ -8,6 +8,7 @@ const apiClient = axios.create({
 });
 
 const ApiCaller = {
+
   getAllLodgings: async () => {
     try {
       const response = await apiClient.get('/lodgings');
@@ -21,6 +22,7 @@ const ApiCaller = {
   getLodgingById: async (id) => {
     try {
       const response = await apiClient.get(`/lodgings/${id}`);
+      
       return response.data;
     } catch (error) {
       console.error(`Error fetching lodging with id ${id}:`, error);
@@ -34,6 +36,33 @@ const ApiCaller = {
       return response.data;
     } catch (error) {
       console.error(`Error deleting lodging with id ${id}:`, error);
+      throw error;
+    }
+  },
+
+  updateLodgingById: async (id, lodgingData) => {
+
+    try {
+
+      const response = await apiClient.patch(`/lodgings/${id}`, lodgingData)
+      return response.data
+
+    } 
+    
+    catch (error) {
+
+      console.error(`Error updating lodging with id ${id}:`, error)
+      throw error
+
+    }
+  },
+
+  addLodging: async (lodgingData) => {
+    try {
+      const response = await apiClient.put('/lodgings', lodgingData);
+      return response.data;
+    } catch (error) {
+      console.error('Error adding lodging:', error);
       throw error;
     }
   },

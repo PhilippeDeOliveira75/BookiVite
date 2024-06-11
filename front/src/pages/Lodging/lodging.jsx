@@ -1,35 +1,49 @@
-import './lodging.scss';
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import ApiCaller from '@services/apiCaller';
+import './lodging.scss'
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import ApiCaller from '@services/apiCaller'
+import { LodgingDetails } from '@components/import'
 
 function Lodging() {
-  const { id } = useParams();
-  const [lodging, setLodging] = useState(null);
+
+  const { id } = useParams()
+  const [lodging, setLodging] = useState(null)
 
   useEffect(() => {
+
     const fetchLodging = async () => {
+
       try {
+
         const { data } = await ApiCaller.getLodgingById(id)
         setLodging(data)
-      } catch (error) {
-        console.error('Error fetching lodging:', error);
+
+      } 
+      
+      catch (error) {
+        console.error('Error fetching lodging:', error)
       }
-    };
 
-    fetchLodging();
-  }, [id]);
+    }
 
-  if (!lodging) return <p>Logement non trouvé</p>;
+    fetchLodging()
+
+  }, [id])
 
   return (
-    <div>
-      <h1>{lodging.title}</h1>
-      <img src={lodging.cover} alt={`Image of ${lodging.title}`} />
-      <p>Prix par nuit: {lodging.price}€</p>
-      <p>Note: {lodging.rating}</p>
+
+    <div className="lodging-container">
+
+      {lodging ? (
+        <LodgingDetails lodging={lodging} />
+      ) : (
+        <p>Chargement...</p>
+      )}
+
     </div>
-  );
+  
+  )
+  
 }
 
-export default Lodging;
+export default Lodging

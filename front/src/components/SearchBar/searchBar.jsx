@@ -20,6 +20,7 @@ function SearchBar({ searchTerm, onSearchChange, lodgings, onFilter }) {
         <div className="w-searchBar">
             <i className="location-icon fa-solid fa-location-dot"></i>
             <input
+                className='searchBar-input'
                 type="text"
                 name="localisation"
                 id="localisation"
@@ -33,4 +34,4 @@ function SearchBar({ searchTerm, onSearchChange, lodgings, onFilter }) {
     )
 }
 
-export default SearchBar;
+export default SearchBar

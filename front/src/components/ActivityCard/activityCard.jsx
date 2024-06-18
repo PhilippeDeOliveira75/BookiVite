@@ -1,8 +1,8 @@
-import './activityCard.scss';
-import React, { useState } from 'react';
-import chevronRight from '@assets/logo/ChevronRight.svg';
-import chevronLeft from '@assets/logo/ChevronLeft.svg';
-import { VieuxPort, FortDePomegues, ParcNationalDesCalanques, NotreDameDeLaGarde, ÎlesduFrioul, ParcLonchamp } from '@assets/activitys/import.jsx';
+import './activityCard.scss'
+import { useState } from 'react'
+import chevronRight from '@assets/logo/ChevronRight.svg'
+import chevronLeft from '@assets/logo/ChevronLeft.svg'
+import { VieuxPort, FortDePomegues, ParcNationalDesCalanques, NotreDameDeLaGarde, ÎlesduFrioul, ParcLonchamp } from '@assets/activitys/import.jsx'
 
 const activitys = [
   { nom: "Vieux-Port", image: VieuxPort },
@@ -21,15 +21,15 @@ function ActivityCard() {
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + activitys.length) % activitys.length);
-  };
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + activitys.length) % activitys.length)
+  }
 
   const visibleActivities = [
     activitys[currentIndex],
     activitys[(currentIndex + 1) % activitys.length],
     activitys[(currentIndex + 2) % activitys.length],
     activitys[(currentIndex + 3) % activitys.length],
-  ];
+  ]
 
   return (
     <div className="carousel">

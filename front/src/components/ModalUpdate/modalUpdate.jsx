@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './modalUpdate.scss'
 
 function ModalUpdate({ show, onClose, lodging, updateLodging }) {

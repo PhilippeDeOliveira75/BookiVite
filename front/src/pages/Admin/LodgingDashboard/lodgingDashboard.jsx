@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import ApiCaller from '@services/apiCaller'
 import { ModalUpdate, ModalDelete, LodgingDetails } from '@components/import'
 
-function LodgingDashboard() {
+function LodgingDashboard () {
 
   const { id } = useParams()
   const navigate = useNavigate()
@@ -12,6 +12,7 @@ function LodgingDashboard() {
   const [initialLodging, setInitialLodging] = useState(null)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
+
 
   const fetchLodging = async () => {
 
@@ -50,7 +51,7 @@ function LodgingDashboard() {
 
       await ApiCaller.deleteLodgingById(id)
       setShowDeleteModal(false)
-      navigate('/admin')
+      navigate('/admin/dashboard')
     } 
     
     catch (error) {

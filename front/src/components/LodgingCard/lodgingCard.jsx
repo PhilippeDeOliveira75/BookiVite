@@ -1,8 +1,10 @@
-import './lodgingCard.scss';
-import { StarRating } from '@components/import';
+import './lodgingCard.scss'
+import { StarRating } from '@components/import'
 
 function LodgingCard({ lodgings, onCardClick }) {
+
   return (
+
     <>
       {lodgings.map((lodging) => (
         <article className='w-lodgingCard' key={lodging.id} onClick={() => onCardClick(lodging.id)} >
@@ -17,7 +19,9 @@ function LodgingCard({ lodgings, onCardClick }) {
         </article>
       ))}
     </>
-  );
+
+  )
+
 }
 
-export default LodgingCard;
+export default LodgingCard

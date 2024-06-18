@@ -1,13 +1,13 @@
-import './sort.scss';
+import './sort.scss'
 
-function Sort({ onChange }) {
+function Sort ({ onSortChange }) {
 
     return (
         
       <div className='sortContainer'>
         <div className='w-sort'>
           <h3> Tri par </h3>
-          <select className='sort' id='sort' onChange={onChange}>
+          <select className='sort' id='sort' onChange= {(e) => onSortChange(e.target.value)}>
             <option value='name'>Nom</option>
             <option value='prix'>Prix : Ordre croissant</option>
             <option value='-prix'>Prix : Ordre décroissant</option>
@@ -15,8 +15,9 @@ function Sort({ onChange }) {
           </select>
         </div>
       </div>
-    );
-  }
+
+    )
+
+}
   
-  export default Sort;
-  
+export default Sort

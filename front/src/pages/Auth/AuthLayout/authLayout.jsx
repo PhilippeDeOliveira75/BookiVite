@@ -1,9 +1,9 @@
-import './layout.scss'
+import './authLayout.scss'
 import { Outlet } from 'react-router'
 import { Header, Footer } from '@components/import.jsx'
 
 
-function Layout  ()  {
+function AuthLayout () {
 
     return (
 
@@ -19,4 +19,4 @@ function Layout  ()  {
 
 }
 
-export default Layout
+export default AuthLayout

@@ -22,7 +22,7 @@ function Login () {
         localStorage.setItem('token', response.access_token)
 
         // Rediriger l'utilisateur vers la page admin
-        window.location.href = '/admin'
+        window.location.href = '/admin/dashboard'
 
       } else {
 
@@ -51,7 +51,7 @@ function Login () {
 
           <div className="input-wrapper">
             <label htmlFor="username">Username</label> 
-            <input autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <input id="username" autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)} />
           </div>
 
           <div className="input-wrapper">

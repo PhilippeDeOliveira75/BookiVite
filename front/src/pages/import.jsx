@@ -1,7 +1,0 @@
-export { default as Home } from '@pages/Home/home.jsx'
-export { default as Error } from '@pages/Error/error.jsx'
-export { default as Layout } from '@pages/Layout/layout.jsx'
-export { default as Login } from '@pages/Login/login.jsx'
-export { default as Admin } from '@pages/Admin/admin.jsx'
-export { default as LodgingDashboard } from '@pages/LodgingDashboard/lodgingDashboard.jsx'
-export { default as Lodging } from '@pages/Lodging/lodging.jsx'

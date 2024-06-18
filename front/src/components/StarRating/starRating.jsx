@@ -10,11 +10,11 @@ function StarRating ({ rating }) {
 
             if (i < rating) {
 
-                stars.push(<i key={i} className="fullStar fa-xs fa-solid fa-star" aria-hidden="true"></i>);
+                stars.push(<i key={i} className="fullStar fa-xs fa-solid fa-star" aria-hidden="true"></i>)
             
             } else {
 
-                stars.push(<i key={i} className="emptyStar fa-xs fa-solid fa-star" aria-hidden="true"></i>);
+                stars.push(<i key={i} className="emptyStar fa-xs fa-solid fa-star" aria-hidden="true"></i>)
            
             }
         }

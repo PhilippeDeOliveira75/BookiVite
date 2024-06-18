@@ -1,4 +1,3 @@
-import React from 'react'
 import './modalDelete.scss'
 
 function ModalDelete ({ show, onClose, onConfirm }) {
@@ -8,6 +7,7 @@ function ModalDelete ({ show, onClose, onConfirm }) {
   }
 
   return (
+
     <div className="modalDelete">
       <div className="modalContent">
         <p>Souhaitez-vous supprimer ce logement ?</p>
@@ -17,6 +17,7 @@ function ModalDelete ({ show, onClose, onConfirm }) {
         </div>
       </div>
     </div>
+    
   )
   
 }

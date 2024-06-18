@@ -46,7 +46,17 @@ module.exports = (sequelize) => {
                 min: 1,
                 max: 5
             }
+        },
+
+        style: {
+            type: DataTypes.STRING(50),
+            allowNull: false,
+            defaultValue: '',
+            validate: {
+              isIn: [['', 'economique', 'familial', 'romantique', 'animaux autorises']]
+            }
         }
+
     }, { paranoid: true })
     
 }

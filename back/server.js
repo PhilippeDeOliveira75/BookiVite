@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: true }))
 /* Import des modules de routage */
 const userRouter = require('./routes/users')
 const lodgingRouter = require('./routes/lodgings')
+const activityRouter = require('./routes/activities')
 const authRouter = require('./routes/auth')
 
 /* Mise en place du routage */
@@ -29,6 +30,7 @@ app.get('/', (req, res) => res.send(`Jusqu'ici tout va bien`))
 
 app.use('/users', userRouter)
 app.use('/lodgings', lodgingRouter)
+app.use('/activities', activityRouter)
 app.use('/auth', authRouter)
 
 app.get('*', (req, res) => res.status(501).send(`Tu n'as rien à foutre là`))

@@ -17,14 +17,15 @@ const db = {}
 db.sequelize = sequelize
 db.User = require('./models/user')(sequelize)
 db.Lodging = require('./models/lodging')(sequelize)
+db.Activity = require('./models/activity')(sequelize)
 
-/* Synchronisation des modèles */
-// sequelize.sync(err => {
+/*Synchronisation des modèles */
+sequelize.sync(err => {
 
-//     console.log('Database Sync Error', err) 
+    console.log('Database Sync Error', err) 
 
-// })
+})
 
-// db.sequelize.sync({alter: true})
+db.sequelize.sync({alter: true})
 
 module.exports = db

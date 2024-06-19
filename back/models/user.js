@@ -25,12 +25,6 @@ module.exports = (sequelize) => {
             allowNull: false
         },
 
-        pseudo:{
-            type: DataTypes.STRING(100),
-            allowNull: false,
-
-        },
-
         email:{
             type: DataTypes.STRING,
             validate:{

@@ -14,10 +14,17 @@
   "main": "index.js",
   "scripts": {
     "start": "node -r dotenv/config server.js",
-    "dev": "nodemon -r dotenv/config server.js"
+    "dev": "nodemon -r dotenv/config server.js",
+    "test": "jest --setupFiles dotenv/config",
+    "test:file": "func() { jest ${1}.test.js --setupFiles dotenv/config; }; func",
+    "test:cov": "jest --setupFiles dotenv/config --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
 }

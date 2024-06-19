@@ -1,69 +1,80 @@
-import './home.scss'
-import { useState, useEffect } from 'react'
-import { SearchBar, Style, Sort, LodgingCard, PopularCard, ActivityCard } from '@components/import.jsx'
-import Graph from '@assets/logo/graph.svg'
-import ApiCaller from '@services/apiCaller'
-import { useNavigate } from 'react-router-dom'
-import { Filter } from '@utils/import.jsx'
+import './home.scss';
+import { useState, useEffect } from 'react';
+import { SearchBar, Style, Sort, LodgingCard, PopularCard, ActivityCard } from '@components/import.jsx';
+import Graph from '@assets/logo/graph.svg';
+import { LodgingCaller, ActivityCaller } from '@services/import';
+import { useNavigate } from 'react-router-dom';
+import { Filter } from '@utils/import.jsx';
 
 function Home() {
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [allLodgings, setAllLodgings] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
+  const [allLodgings, setAllLodgings] = useState([]);
+  const [allActivities, setAllActivities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  const [popularLodgings, setPopularLodgings] = useState([])
+  const [popularLodgings, setPopularLodgings] = useState([]);
 
-  const [searchTerm, setSearchTerm] = useState('')
-  const [style, setStyle] = useState([])
-  const [sortBy, setSortBy] = useState('name')
+  const [searchTerm, setSearchTerm] = useState('');
+  const [style, setStyle] = useState([]);
+  const [sortBy, setSortBy] = useState('name');
 
-  const [filteredLodgings, setFilteredLodgings] = useState([])
-
+  const [filteredLodgings, setFilteredLodgings] = useState([]);
 
   useEffect(() => {
 
-    ApiCaller.getAllLodgings()
-    
+    LodgingCaller.getAllLodgings()
+
       .then((response) => {
-        setAllLodgings(response);
-        setPopularLodgings(response);
-        setLoading(false);
+        setAllLodgings(response)
+        setPopularLodgings(response)
+        setLoading(false)
       })
 
       .catch((err) => {
-        setError(err);
-        setLoading(false);
+        setError(err)
+        setLoading(false)
       })
 
   }, [])
 
+  useEffect(() => {
+
+    ActivityCaller.getAllActivities()
+
+      .then((response) => {
+        setAllActivities(response)
+      })
+
+      .catch((err) => {
+        setError(err)
+      })
+
+  }, [])
 
   useEffect(() => {
 
-    setFilteredLodgings ( Filter (allLodgings, searchTerm, style, sortBy) )
+    setFilteredLodgings(Filter(allLodgings, searchTerm, style, sortBy))
 
   }, [searchTerm, style, sortBy, allLodgings])
 
   const handleSearch = (event) => {
     const input = event.target.value;
-    setSearchTerm(input)
-  }
+    setSearchTerm(input);
+  };
 
   const handleCardClick = (id) => {
     navigate(`/lodging/${id}`)
   }
 
-
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error.message}</p>
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
-
     <>
-      <div className='w-title'>
+      <div className="w-title">
         <h1> Trouvez votre hébergement pour des vacances de rêves </h1>
         <p>En plein centre-ville ou en pleine nature</p>
       </div>
@@ -71,25 +82,25 @@ function Home() {
       <SearchBar searchTerm={searchTerm} onSearchChange={handleSearch} />
 
       <span className="w-iconsParagraph">
-        <div className='w-icons'>
+        <div className="w-icons">
           <i className="fa-regular fa-circle circle-icon"></i>
           <i className="fa-solid fa-info info-icon"></i>
         </div>
         <p>Plus de 500 logements sont disponibles dans cette ville</p>
       </span>
 
-      <div className='filterContainer'>
-        <Style setStyle={setStyle} style={style}/>
+      <div className="filterContainer">
+        <Style setStyle={setStyle} style={style} />
       </div>
 
-      <Sort  onSortChange={setSortBy}/>
+      <Sort onSortChange={setSortBy} />
 
-      <div id='hebergements' className='w-LodgingCardAndPopularCard'>
-        <section className='titleAndLodgingCardContainer'>
-          <div className='w-titleAndLodingCard'>
+      <div id="hebergements" className="w-LodgingCardAndPopularCard">
+        <section className="titleAndLodgingCardContainer">
+          <div className="w-titleAndLodingCard">
             <h2> Nos hébergements </h2>
             {filteredLodgings.length === 0 ? (
-              <p className='noLodingsFoundMessage'> Aucun logement trouvé. </p>
+              <p className="noLodingsFoundMessage"> Aucun logement trouvé. </p>
             ) : (
               <div className="w-LodgingCard">
                 <LodgingCard lodgings={filteredLodgings} onCardClick={handleCardClick} />
@@ -98,20 +109,20 @@ function Home() {
           </div>
         </section>
 
-        <aside className='titleAndPopularCardContainer'>
+        <aside className="titleAndPopularCardContainer">
           <div className="w-titleAndLogo">
             <h2> Les plus populaire </h2>
-            <img className='popularLogo' src={Graph} alt="logo graphique" />
+            <img className="popularLogo" src={Graph} alt="logo graphique" />
           </div>
-          
-          <div className='w-popularCard'>
-            <PopularCard lodgings={popularLodgings} />
+
+          <div className="w-popularCard">
+            <PopularCard lodgings={popularLodgings} onCardClick={handleCardClick}/>
           </div>
         </aside>
       </div>
 
-      <section className='activityCardContainer'>
-        <ActivityCard />
+      <section className="activityCardContainer">
+        <ActivityCard activities={allActivities} />
       </section>
     </>
   );

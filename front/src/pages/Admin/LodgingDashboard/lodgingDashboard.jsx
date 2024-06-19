@@ -1,7 +1,7 @@
 import './lodgingDashboard.scss'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import ApiCaller from '@services/apiCaller'
+import { LodgingCaller} from '@services/import'
 import { ModalUpdate, ModalDelete, LodgingDetails } from '@components/import'
 
 function LodgingDashboard () {
@@ -18,7 +18,7 @@ function LodgingDashboard () {
 
     try {
 
-      const { data } = await ApiCaller.getLodgingById(id)
+      const { data } = await LodgingCaller.getLodgingById(id)
       setLodging(data)
       setInitialLodging(data)
     } 
@@ -49,7 +49,7 @@ function LodgingDashboard () {
 
     try {
 
-      await ApiCaller.deleteLodgingById(id)
+      await LodgingCaller.deleteLodgingById(id)
       setShowDeleteModal(false)
       navigate('/admin/dashboard')
     } 
@@ -67,7 +67,7 @@ function LodgingDashboard () {
 
     try {
 
-      await ApiCaller.updateLodgingById(id, updatedLodging)
+      await LodgingCaller.updateLodgingById(id, updatedLodging)
       setShowEditModal(false)
       fetchLodging()
     } 

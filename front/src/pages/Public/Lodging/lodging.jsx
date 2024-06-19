@@ -1,7 +1,7 @@
 import './lodging.scss'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import ApiCaller from '@services/apiCaller'
+import { LodgingCaller} from '@services/import'
 import { LodgingDetails } from '@components/import'
 
 function Lodging() {
@@ -15,7 +15,7 @@ function Lodging() {
 
       try {
 
-        const { data } = await ApiCaller.getLodgingById(id)
+        const { data } = await LodgingCaller.getLodgingById(id)
         setLodging(data)
 
       } 

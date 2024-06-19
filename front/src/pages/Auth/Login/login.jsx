@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import ApiCaller from '@services/apiCaller'
+import { LodgingCaller} from '@services/import'
 import './login.scss'
 
 function Login () {
@@ -14,7 +14,7 @@ function Login () {
 
     try {
 
-      const response = await ApiCaller.login({ email: username, password })
+      const response = await LodgingCaller.login({ email: username, password })
       
       if (response.access_token) {
 

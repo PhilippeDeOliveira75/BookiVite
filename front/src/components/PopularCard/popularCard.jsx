@@ -1,7 +1,7 @@
 import './popularCard.scss'
 import { StarRating } from '@components/import'
 
-function PopularCard ({ lodgings }) {
+function PopularCard ({ lodgings, onCardClick }) {
 
   const filteredLodgings = lodgings.filter(lodging => lodging.rating === 5)
 
@@ -11,7 +11,7 @@ function PopularCard ({ lodgings }) {
 
       {filteredLodgings.map((lodging, index) => (
 
-        <article className='popularCard' key={index} >
+        <article className='popularCard' key={index} onClick={() => onCardClick(lodging.id)}>
           <img className='popularCardImg' src={lodging.cover} alt={`Image ${lodging.title}`} />
           <div className='w-titleAndRating'>
             <div className='titleAndPrice'>

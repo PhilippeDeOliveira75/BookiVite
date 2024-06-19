@@ -1,7 +1,7 @@
 import './dashboard.scss'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import ApiCaller from '@services/apiCaller'
+import { LodgingCaller} from '@services/import'
 import { LodgingCard, SearchBar, ModalCreate } from '@components/import'
 
 
@@ -18,7 +18,7 @@ function Dashboard () {
   
   useEffect(() => {
 
-    ApiCaller.getAllLodgings()
+    LodgingCaller.getAllLodgings()
 
       .then((response) => {
 
@@ -58,7 +58,7 @@ function Dashboard () {
 
       try {
 
-        const response = await ApiCaller.addLodging(lodgingData)
+        const response = await LodgingCaller.addLodging(lodgingData)
         setAddFlag(!addFlag)
         setShowCreateModal(false)
 

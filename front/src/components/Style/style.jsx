@@ -49,7 +49,7 @@ function Style({ style, setStyle }) {
         {styleArray.map(({ key, label, icon }) => (
 
           <li key={key} className={`filterListPuce ${Array.isArray(style) && style.includes(key) ? 'active' : ''}`} onClick={() => handleFilterClick(key)} >
-            <img className='filterLogo' src={icon} alt={label} />
+            <img className='filterLogo' src={icon} alt={`logo ${label}`} />
             <span>{label}</span>
           </li>
 

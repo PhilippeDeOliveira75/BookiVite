@@ -6,7 +6,7 @@ function Footer() {
 
         <footer className="footer">
             <div>
-                <h4>À propos</h4>
+                <h3>À propos</h3>
                 <ul>
                     <li>Fonctionnement du site</li>
                     <li>Conditions générales</li>
@@ -14,14 +14,14 @@ function Footer() {
                 </ul>
             </div>
             <div>
-                <h4>Nos hébergements</h4>
+                <h3>Nos hébergements</h3>
                 <ul>
                     <li>Charte qualité</li>
                     <li>Proposer votre hôtel</li>
                 </ul>
             </div>
             <div>
-                <h4>Assistance</h4>
+                <h3>Assistance</h3>
                 <ul>
                     <li>Centre d'aide</li>
                     <li>Nous contacter</li>

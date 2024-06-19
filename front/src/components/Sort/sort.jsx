@@ -7,6 +7,7 @@ function Sort ({ onSortChange }) {
       <div className='sortContainer'>
         <div className='w-sort'>
           <h3> Tri par </h3>
+          <label htmlFor="sort">Choisir un critère de tri :</label>
           <select className='sort' id='sort' onChange= {(e) => onSortChange(e.target.value)}>
             <option value='name'>Nom</option>
             <option value='prix'>Prix : Ordre croissant</option>

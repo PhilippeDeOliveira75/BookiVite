@@ -1,7 +1,7 @@
 import './lodgingCard.scss'
 import { StarRating } from '@components/import'
 
-function LodgingCard({ lodgings, onCardClick }) {
+function LodgingCard ({ lodgings, onCardClick }) {
 
   return (
 

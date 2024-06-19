@@ -3,22 +3,40 @@ import Economic from '@assets/logo/economic.svg'
 import Family from '@assets/logo/family.svg'
 import Romantic from '@assets/logo/romantic.svg'
 import Animals from '@assets/logo/animals.svg'
+import { useEffect } from 'react'
 
-function Style ({ style, setStyle }) {
+function Style({ style, setStyle }) {
 
-  const handleFilterClick = (e) => {
+  const styleArray = [
+    { key: 'economique', label: 'Économique', icon: Economic },
+    { key: 'familial', label: 'Familial', icon: Family },
+    { key: 'romantique', label: 'Romantique', icon: Romantic },
+    { key: 'animaux autorises', label: 'Animaux autorisés', icon: Animals },
+  ]
 
-    if (style === e) {
+  const handleFilterClick = (key) => {
 
-      setStyle(false)
+    let newStyle
 
-      return
-
+    if (Array.isArray(style) && style.includes(key)) {
+      newStyle = style.filter((item) => item !== key)
+    } 
+    
+    else if (Array.isArray(style)) {
+      newStyle = [...style, key]
+    } 
+    
+    else {
+      newStyle = [key]
     }
 
-    setStyle(e)
+    setStyle(newStyle)
 
   }
+
+  useEffect(() => {
+
+  }, [style]);
 
   return (
 
@@ -28,25 +46,14 @@ function Style ({ style, setStyle }) {
 
       <ul className='filterList'>
 
-        <li className='filterListPuce' onClick={() => handleFilterClick('economique')}>
-          <img className='filterLogo' src={Economic} alt='Economic' />
-          <span>Économique</span>
-        </li>
-        
-        <li className='filterListPuce' onClick={() => handleFilterClick('familial')}>
-          <img className='filterLogo' src={Family} alt='Family' />
-          <span>Familial</span>
-        </li>
+        {styleArray.map(({ key, label, icon }) => (
 
-        <li className='filterListPuce' onClick={() => handleFilterClick('romantique')}>
-          <img className='filterLogo' src={Romantic} alt='Romantic' />
-          <span>Romantique</span>
-        </li>
+          <li key={key} className={`filterListPuce ${Array.isArray(style) && style.includes(key) ? 'active' : ''}`} onClick={() => handleFilterClick(key)} >
+            <img className='filterLogo' src={icon} alt={label} />
+            <span>{label}</span>
+          </li>
 
-        <li className='filterListPuce' onClick={() => handleFilterClick('animaux autorises')}>
-          <img className='filterLogo' src={Animals} alt='Animals' />
-          <span>Animaux autorisés</span>
-        </li>
+        ))}
 
       </ul>
 

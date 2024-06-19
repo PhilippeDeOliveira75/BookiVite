@@ -1,10 +1,10 @@
-import './home.scss';
-import { useState, useEffect } from 'react';
-import { SearchBar, Style, Sort, LodgingCard, PopularCard, ActivityCard } from '@components/import.jsx';
-import Graph from '@assets/logo/graph.svg';
+import './home.scss'
+import { useState, useEffect } from 'react'
+import { SearchBar, Style, Sort, LodgingCard, PopularCard, ActivityCard } from '@components/import.jsx'
+import Graph from '@assets/logo/graph.svg'
 import ApiCaller from '@services/apiCaller'
-import { useNavigate } from 'react-router-dom';
-import { Filter } from '@utils/import.jsx';  
+import { useNavigate } from 'react-router-dom'
+import { Filter } from '@utils/import.jsx'
 
 function Home() {
 
@@ -17,8 +17,8 @@ function Home() {
   const [popularLodgings, setPopularLodgings] = useState([])
 
   const [searchTerm, setSearchTerm] = useState('')
-  const [style, setStyle] = useState(false)
-    const [sortBy, setSortBy] = useState('name')
+  const [style, setStyle] = useState([])
+  const [sortBy, setSortBy] = useState('name')
 
   const [filteredLodgings, setFilteredLodgings] = useState([])
 
@@ -42,7 +42,7 @@ function Home() {
 
 
   useEffect(() => {
-    
+
     setFilteredLodgings ( Filter (allLodgings, searchTerm, style, sortBy) )
 
   }, [searchTerm, style, sortBy, allLodgings])

@@ -12,10 +12,10 @@ function Filter ( allLodgings, searchTerm, style, sortBy ) {
                 .replace(/[\u0300-\u036f]/g, ""))
     )
 
-    if (style) {
-
-        filteredLodgings = filteredLodgings.filter(lodging => lodging.style === style)
-
+    if (style.length > 0) {
+      filteredLodgings = filteredLodgings.filter((lodging) =>
+        style.every((style) => lodging.style.includes(style))
+      );
     }
 
     if (sortBy) {

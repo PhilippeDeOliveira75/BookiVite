@@ -1,0 +1,84 @@
+.dropDownDiv {
+    width: 200px;
+    margin: 50px;
+    z-index: 1000;
+    padding: 17px 0px 17px 0px;
+    border-radius: 11px;
+    background-color: #ffff;
+    position: relative;
+
+    .buttonDiv {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ffff;
+        border-radius: 11px;
+        padding: 0px 10px;
+
+        .buttonTitle {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            color:#1B1B1B;
+        }
+    
+        .vector {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    .w-categoryList {
+        width: 100%;
+        min-height: 110px;
+        position: absolute;
+        background-color: #ffff;
+        z-index: 1000;
+        display: none;
+        border-radius: 0 0 11px 11px;
+        overflow: hidden;
+
+        .categoryList {
+            padding-inline-start: 0px;
+            width: 100%;
+            overflow-y: auto;
+            max-height: 250px;
+            min-width: min-content;
+
+            .itemList {
+                display: flex;
+                align-items: center;
+                font-family: 'Manrope', sans-serif;
+                font-weight: 400;
+                font-size: 14px;
+                color: #1B1B1B;
+                list-style-type: none;
+                padding: 10px 16px;
+            
+            }
+            
+            .itemList:hover {
+                background-color: #0065FC;
+                cursor: pointer;
+            }
+
+        }
+
+        .categoryList::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        .categoryList::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 11px; 
+        }
+
+    }
+}
+
+
+
+
+
+
+

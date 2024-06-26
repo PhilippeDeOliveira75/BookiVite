@@ -1,21 +1,21 @@
-import './home.scss';
-import { useState, useEffect } from 'react';
-import { SearchBar, Style, Sort, LodgingCard, PopularCard, ActivityCard } from '@components/import.jsx';
-import Graph from '@assets/logo/graph.svg';
-import { LodgingCaller, ActivityCaller } from '@services/import';
-import { useNavigate } from 'react-router-dom';
-import { Filter } from '@utils/import.jsx';
+import './home.scss'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { SearchBar, Style, Sort, LodgingCard, PopularCard, ActivityCard } from '@components/import.jsx'
+import Graph from '@assets/logo/graph.svg'
+import { LodgingCaller, ActivityCaller } from '@services/import'
+import { Filter } from '@utils/import.jsx'
 
 function Home() {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [allLodgings, setAllLodgings] = useState([]);
-  const [allActivities, setAllActivities] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [allLodgings, setAllLodgings] = useState([])
+  const [allActivities, setAllActivities] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
-  const [popularLodgings, setPopularLodgings] = useState([]);
+  const [popularLodgings, setPopularLodgings] = useState([])
 
   const [searchTerm, setSearchTerm] = useState('');
   const [style, setStyle] = useState([]);
@@ -119,6 +119,7 @@ function Home() {
             <PopularCard lodgings={popularLodgings} onCardClick={handleCardClick}/>
           </div>
         </aside>
+        
       </div>
 
       <section className="activityCardContainer">

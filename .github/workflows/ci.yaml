@@ -1,9 +1,9 @@
 name: Integration continue
 
 on:
-  # push:
-  #   branches: ["main"]
-  workflow_call
+  push:
+    branches: ["main"]
+  #workflow_call
 
 jobs:
   hello:

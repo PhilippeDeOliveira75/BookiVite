@@ -1,5 +1,5 @@
 /* Import des module nécessaires */
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const DB = require('../db.config')
 const User = DB.User

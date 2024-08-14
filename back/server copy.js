@@ -26,7 +26,7 @@ const authRouter = require('./routes/auth')
 
 /* Mise en place du routage */
 
-app.get('/', (req, res) => res.send(`Jusqu'ici tout va bien`))
+app.get('/', (req, res) => res.send(`Jusqu'ici tout va bien !`))
 
 app.use('/users', userRouter)
 app.use('/lodgings', lodgingRouter)

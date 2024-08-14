@@ -85,7 +85,7 @@ jobs:
         run: npm i --omit=dev
 
       - name: Start
-        run: npm start
+        run: pm2 restart pm2.config.js
 
     
       

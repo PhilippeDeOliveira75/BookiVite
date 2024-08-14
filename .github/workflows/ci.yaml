@@ -66,11 +66,11 @@ jobs:
         working-directory: back
       
     env:
-      DB_HOST = 127.0.0.1
-      DB_PORT = 3306
-      DB_NAME = booki
-      DB_USER = neoz
-      DB_PASSWORD = matrix
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_NAME: booki
+      DB_USER: neoz
+      DB_PASSWORD: matrix
 
     steps:
       - name: Checkout

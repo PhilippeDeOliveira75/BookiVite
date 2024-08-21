@@ -59,7 +59,7 @@ jobs:
 
   deploiement:
     needs: [routage_main]
-    runs-on: self-hosted
+    runs-on: booki
 
     defaults:
       run:
